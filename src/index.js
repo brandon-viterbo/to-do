@@ -2,32 +2,21 @@ import "./styles.css";
 import { createProject } from "./project.js";
 import { createTodo } from "./todo.js";
 
-let projectName = prompt("Your awesome project's name?");
-const myProject = createProject(projectName);
-console.log(`Created project ${myProject.getName()}`);
+const myTodo = createTodo("Read Book 8");
+let thisPriority = myTodo.getPriority();
+console.log(thisPriority);
 
-projectName = prompt("Rename your project please!");
-myProject.setName(projectName);
-console.log(`Renamed project to ${myProject.getName()}`);
-console.log(myProject.getTodos());
+myTodo.setPriority(4);
+console.log(myTodo.getPriority());
 
-const firstTodo = prompt("What is your first todo for this project?");
-myProject.addTodo(firstTodo);
-console.log(myProject.getTodos());
+myTodo.setPriority(-1);
+console.log(myTodo.getPriority());
 
-const secondTodo = prompt("And the second?");
-myProject.addTodo(secondTodo);
-console.log(myProject.getTodos());
+myTodo.setPriority(1.0001);
+console.log(myTodo.getPriority());
 
-const todoList = myProject.getTodos();
-const todo1 = todoList[0];
-const todo2 = todoList[1];
-console.log(todo1.getName());
-console.log(todo2.getName());
+myTodo.setPriority(1);
+console.log(myTodo.getPriority());
 
-console.log("Deleting first Todo");
-myProject.removeTodo(firstTodo);
-
-const newList = myProject.getTodos();
-const newTodo = newList[0];
-console.log(newTodo.getName());
+myTodo.setPriority(2);
+console.log(myTodo.getPriority());
