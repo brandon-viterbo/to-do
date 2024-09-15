@@ -23,6 +23,7 @@ export function createTodo(todoName) {
   let description = "";
   let dueDate = "";
   let priority = createPriority(0);
+  let done = false;
 
   const getName = () => name;
   const setName = (newName) => name = newName;
@@ -32,8 +33,10 @@ export function createTodo(todoName) {
   const setDueDate = (newDueDate) => dueDate = newDueDate;
   const getPriority = () => priority.getPriority();
   const setPriority = (newPriorityLevel) => priority.setPriority(newPriorityLevel);
+  const isDone = () => done;
+  const toggleDone = () => done = !done;
 
   return { getName, setName, getDescription, setDescription, getDueDate,
-    setDueDate, getPriority, setPriority,
+    setDueDate, getPriority, setPriority, isDone, toggleDone,
   };
 }
