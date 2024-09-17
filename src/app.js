@@ -5,7 +5,7 @@ export const userProjects = (function() {
   const projects = [];
 
   const getProjects = () => projects;
-  const addProject = (projectName) => projects.push(createProject(projectName));
+  const addProject = (project) => projects.push(project);
   const removeProject = (projectName) => removeNamedElemant(projects, projectName); 
 
   return { getProjects, addProject, removeProject, }

@@ -76,6 +76,10 @@ h1 {
   background-color: hsl(0deg 0% 90%);
 }
 
+.enter-project {
+  display: none;
+}
+
 .navbar li {
   display: flex;
   justify-content: space-between;
