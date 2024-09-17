@@ -1,14 +1,22 @@
-export function refreshProjectsList(userProjects, displayElement) {
-  const currentProjects = userProjects.getProjects();
+function makeNavBarLink(displayText) {
+  const listItem = document.createElement("li");
+  const btnDelete = document.createElement("button");
 
-  currentProjects.forEach(project => {
-    const listItem = document.createElement("li");
-    const btnDelete = document.createElement("button");
+  listItem.textContent = displayText;
+  btnDelete.textContent = "X";
+  listItem.appendChild(btnDelete);
+  return listItem;
+}
 
-    listItem.classList.add("project-link");
-    listItem.textContent = project.getName();
-    btnDelete.textContent = "X";
-    listItem.appendChild(btnDelete);
-    displayElement.appendChild(listItem);
+export function refreshProjectsUl(projectsArr, displayElement) {
+  projectsArr.forEach(project => {
+    addProjectToUl(project, displayElement);
   });
+}
+
+export function addProjectToUl(project, displayElement) {
+  const projectLink = makeNavBarLink(project.getName());
+  
+  projectLink.classList.add("project-link");
+  displayElement.appendChild(projectLink);
 }

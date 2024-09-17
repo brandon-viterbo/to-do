@@ -1,15 +1,14 @@
 import "./styles.css";
+import { createProject } from "./project";
 import { userProjects, } from "./app";
-import { refreshProjectsList } from "./ui";
+import { refreshProjectsUl, addProjectToUl, } from "./ui";
 
 const projectsList = document.querySelector(".navbar > ul");
-
-console.log(userProjects.getProjects());
-
 userProjects.addProject("Read Ulysses");
-console.log(userProjects.getProjects());
-
 userProjects.addProject("Read Obasan");
-console.log(userProjects.getProjects());
 
-refreshProjectsList(userProjects, projectsList);
+refreshProjectsUl(userProjects.getProjects(), projectsList);
+
+const readMe = createProject("Read Me");
+
+addProjectToUl(readMe, projectsList);
