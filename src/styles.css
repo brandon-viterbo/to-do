@@ -32,3 +32,30 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+.container {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template: 100px minmax(auto, 1fr) / 1fr 4fr;
+}
+
+.header {
+  background-color: hsl(0deg 0% 20%);
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+h1 {
+  color: white;
+}
+
+.navbar {
+  background-color: hsl(0deg 0% 70%);
+}
+
+.project {
+  background-color: hsl(0deg 0% 90%);
+}
