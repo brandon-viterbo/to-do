@@ -1,22 +1,16 @@
 import "./styles.css";
-import { createProject } from "./project.js";
-import { createTodo } from "./todo.js";
+import { userProjects } from "./app";
 
-const myTodo = createTodo("Read Book 8");
-let thisPriority = myTodo.getPriority();
-console.log(thisPriority);
+console.log(userProjects.getProjects());
 
-myTodo.setPriority(4);
-console.log(myTodo.getPriority());
+userProjects.addProject("Read Ulysses");
+console.log(userProjects.getProjects());
 
-myTodo.setPriority(-1);
-console.log(myTodo.getPriority());
+userProjects.addProject("Read Obasan");
+console.log(userProjects.getProjects());
 
-myTodo.setPriority(1.0001);
-console.log(myTodo.getPriority());
+userProjects.removeProject("Read Ulysses");
+console.log(userProjects.getProjects());
 
-myTodo.setPriority(1);
-console.log(myTodo.getPriority());
-
-myTodo.setPriority(2);
-console.log(myTodo.getPriority());
+userProjects.removeProject("Read Obasan");
+console.log(userProjects.getProjects());
