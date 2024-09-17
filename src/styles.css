@@ -33,6 +33,22 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+/*
+  My CSS Reset Rules
+*/
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style-type: none;
+}
+
+/*
+  And the rest!
+*/
+
 .container {
   display: grid;
   height: 100vh;
@@ -58,4 +74,16 @@ h1 {
 
 .project {
   background-color: hsl(0deg 0% 90%);
+}
+
+.navbar li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+
+.navbar li:hover {
+  background-color: white;
 }
