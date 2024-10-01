@@ -1,7 +1,7 @@
 import "./styles.css";
 import { createProject } from "./project";
 import { userProjects, } from "./app";
-import { addProjectToUl, } from "./ui";
+import { addProjectToUl, refreshProjectsList, } from "./ui";
 
 const projectsList = document.querySelector(".navbar > ul");
 const btnAddProject = document.querySelector(".add-project");
@@ -32,16 +32,19 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
     const projectLinkEle = addProjectToUl(newProject, projectsList);
     const deleteBtn = projectLinkEle.children[0];
     const projectList = userProjects.getProjects();
-    const projectIndex = projectList.length - 1;
+    const projectIndex = projectList.length;
     
+    projectLinkEle.setAttribute("data-index", projectIndex);
     userProjects.addProject(newProject);
     toggleDisplayBlockNone(inputEnterProjectName);
     toggleDisplayBlockNone(btnAddProject);
 
     deleteBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      projectLinkEle.remove();
+
       userProjects.removeProject(projectIndex);
+
+      refreshProjectsList(userProjects.getProjects(), projectsList);
     });
 
     e.target.value = "";
