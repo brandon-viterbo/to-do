@@ -22,7 +22,6 @@ btnAddProject.addEventListener("click", (e) => {
   e.preventDefault();
   toggleDisplayBlockNone(btnAddProject);
   toggleDisplayBlockNone(inputEnterProjectName);
-  
 })
 
 
@@ -30,21 +29,19 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     const projectName = e.target.value;
     const newProject = createProject(projectName);
+    const projectLinkEle = addProjectToUl(newProject, projectsList);
+    const deleteBtn = projectLinkEle.children[0];
     
     userProjects.addProject(newProject);
-    addProjectToUl(newProject, projectsList)
     toggleDisplayBlockNone(inputEnterProjectName);
     toggleDisplayBlockNone(btnAddProject);
+
+    deleteBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      projectLinkEle.remove();
+      userProjects.removeProject(projectName);
+    });
+
     e.target.value = "";
   }
 })
-
-userProjects.addProject(createProject("Read Ulysses"));
-userProjects.addProject(createProject("Read Obasan"));
-
-refreshProjectsUl(userProjects.getProjects(), projectsList);
-
-const readMe = createProject("Read Me");
-
-addProjectToUl(readMe, projectsList);
-

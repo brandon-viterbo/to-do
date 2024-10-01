@@ -19,4 +19,6 @@ export function addProjectToUl(project, displayElement) {
   
   projectLink.classList.add("project-link");
   displayElement.appendChild(projectLink);
+
+  return projectLink;
 }
