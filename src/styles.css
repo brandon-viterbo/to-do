@@ -53,7 +53,7 @@ li {
   display: grid;
   height: 100vh;
   width: 100vw;
-  grid-template: 100px minmax(auto, 1fr) / 1fr 4fr;
+  grid-template: 100px minmax(auto, 1fr) / minmax(auto, 250px) auto;
 }
 
 .header {
@@ -90,4 +90,8 @@ h1 {
 
 .navbar li:hover {
   background-color: white;
+}
+
+.add-project {
+  display: block;
 }
