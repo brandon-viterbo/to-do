@@ -1,5 +1,4 @@
 import { createTodo } from "./todo";
-import { removeNamedElemant } from "./utils";
 
 export function createProject(projectName) {
   let name = projectName;
@@ -10,7 +9,7 @@ export function createProject(projectName) {
   
   const getTodos = () => todos;
   const addTodo = (todoName) => todos.push(createTodo(todoName));
-  const removeTodo = (todoName) => removeNamedElemant(todos, todoName);
+  const removeTodo = (todoIndex) => todos.splice(todoIndex, 1);
 
   return { getName, setName, getTodos, addTodo, removeTodo, };
 }

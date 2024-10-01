@@ -8,11 +8,6 @@ function makeNavBarLink(displayText) {
   return listItem;
 }
 
-export function refreshProjectsUl(projectsArr, displayElement) {
-  projectsArr.forEach(project => {
-    addProjectToUl(project, displayElement);
-  });
-}
 
 export function addProjectToUl(project, displayElement) {
   const projectLink = makeNavBarLink(project.getName());
