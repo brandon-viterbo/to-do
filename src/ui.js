@@ -5,6 +5,7 @@ function makeNavBarLink(displayText) {
   listItem.textContent = displayText;
   btnDelete.textContent = "X";
   listItem.appendChild(btnDelete);
+
   return listItem;
 }
 
@@ -25,7 +26,7 @@ export function addProjectToUl(project, displayElement) {
 
 export function refreshProjectsList(projectsArr, displayElement) {
   removeAllChildren(displayElement);
-  
+
   for (let i = 0; i < projectsArr.length; i++) {
     const project = projectsArr[i];
     const projectLink = addProjectToUl(project, displayElement);
@@ -52,19 +53,11 @@ export function makeTodoElement(todo) {
   return todoCard;
 }
 
-export function loadProject(project, headerElement) {
-  const todosArr = project.getTodos();
-  const todosUl = document.createElement("ul");
+export function loadProject(projectsList, projectIndex, displayElement) {
+  const project = projectsList[projectIndex];
+  const header = document.createElement("h3");
 
-  headerElement.textContent = project.getName();
+  removeAllChildren(displayElement);
 
-  todosArr.forEach(todo => {
-    const todoElement = makeTodoElement(todo);
-    const li = document.createElement("li");
-    const checkbox = document.createElement("input");
-    
-    li.appendChild(checkbox);
-    li.appendChild(todoElement);
-    todosUl.appendChild(li);
-  });
+  header.textContent = project.getName();
 }
