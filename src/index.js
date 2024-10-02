@@ -1,11 +1,12 @@
 import "./styles.css";
 import { createProject } from "./project";
 import { userProjects, } from "./app";
-import { addProjectToUl, } from "./ui";
+import { addProjectToUl, loadProject, removeAllChildren, } from "./ui";
 
 const projectsUl = document.querySelector(".navbar > ul");
 const btnAddProject = document.querySelector(".add-project");
 const inputEnterProjectName = document.querySelector(".enter-project");
+const projectPage = document.querySelector(".project");
 
 function toggleDisplayBlockNone(element) {
   const elementStyles = window.getComputedStyle(element);
@@ -46,7 +47,8 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
     const projectName = e.target.value;
     const newProject = createProject(projectName);
     const projectLi = addProjectToUl(newProject, projectsUl);
-    const deleteBtn = projectLi.children[0];
+    const projectLink = projectLi.children[0]
+    const deleteBtn = projectLi.children[1];
     const oldList = userProjects.getProjects();
     const newProjectIndex = oldList.length;
     
@@ -55,11 +57,18 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
     toggleDisplayBlockNone(inputEnterProjectName);
     toggleDisplayBlockNone(btnAddProject);
     
+    projectLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      loadProject(userProjects.getProjects(), parseInt(projectLi.dataset.index), projectPage);
+    });
+
     deleteBtn.addEventListener("click", (e) => {
       e.preventDefault();
       deleteProject(userProjects, projectLi);
       updateDatasetIndexes(projectsUl);
-    })
+      removeAllChildren(projectPage);
+    });
+
     e.target.value = "";
   }
 })

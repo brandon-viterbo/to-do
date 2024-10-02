@@ -95,3 +95,11 @@ h1 {
 .add-project {
   display: block;
 }
+
+.project-link {
+  display: flex;
+}
+
+.project-link > span {
+  flex-grow: 1;
+}

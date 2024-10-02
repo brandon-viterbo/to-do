@@ -1,15 +1,17 @@
 function makeNavBarLink(displayText) {
   const listItem = document.createElement("li");
+  const spanText = document.createElement("span");
   const btnDelete = document.createElement("button");
 
-  listItem.textContent = displayText;
+  spanText.textContent = displayText;
   btnDelete.textContent = "X";
+  listItem.append(spanText);
   listItem.appendChild(btnDelete);
 
   return listItem;
 }
 
-function removeAllChildren(element) {
+export function removeAllChildren(element) {
   while (element.firstChild) {
     element.removeChild(element.lastChild);
   }
@@ -60,4 +62,6 @@ export function loadProject(projectsList, projectIndex, displayElement) {
   removeAllChildren(displayElement);
 
   header.textContent = project.getName();
+
+  displayElement.appendChild(header);
 }
