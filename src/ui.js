@@ -47,7 +47,7 @@ export function makeTodoCard(todo) {
 
   todoCard.classList.add("todo-card");
 
-  header.classList.add(".name");
+  header.classList.add("name");
   header.textContent = todo.getName();
 
   dueDate.classList.add("due-date");
