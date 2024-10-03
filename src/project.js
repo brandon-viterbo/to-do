@@ -8,7 +8,7 @@ export function createProject(projectName) {
   const setName = (newName) => name = newName;
   
   const getTodos = () => todos;
-  const addTodo = (todoName) => todos.push(createTodo(todoName));
+  const addTodo = (todo) => todos.push(todo);
   const removeTodo = (todoIndex) => todos.splice(todoIndex, 1);
 
   return { getName, setName, getTodos, addTodo, removeTodo, };

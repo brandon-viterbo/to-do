@@ -1,7 +1,8 @@
 import "./styles.css";
 import { createProject } from "./project";
 import { userProjects, } from "./app";
-import { addProjectToUl, loadProject, clearProjectPage, } from "./ui";
+import { addProjectToUl, loadProject, clearProjectPage, makeTodoCard, } from "./ui";
+import { createTodo } from "./todo";
 
 const projectsUl = document.querySelector(".navbar > ul");
 const btnAddProject = document.querySelector(".add-project");
@@ -11,6 +12,8 @@ const projectTodosDisplay = document.querySelector(".todos");
 const addTodoBtn = document.querySelector(".add-todo");
 const todoForm = document.querySelector(".todo-form");
 const todoFormSubmit = document.querySelector(".todo-form > input");
+const todoList = document.querySelector(".todos");
+let selectedProject = null;
 
 function toggleDisplayBlockNone(element) {
   const elementStyles = window.getComputedStyle(element);
@@ -43,8 +46,7 @@ btnAddProject.addEventListener("click", (e) => {
   e.preventDefault();
   toggleDisplayBlockNone(btnAddProject);
   toggleDisplayBlockNone(inputEnterProjectName);
-})
-
+});
 
 inputEnterProjectName.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
@@ -63,11 +65,17 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
     
     projectLink.addEventListener("click", (e) => {
       e.preventDefault();
-      loadProject(userProjects.getProjects(), parseInt(projectLi.dataset.index), addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
+
+      const projectIndex = parseInt(projectLi.dataset.index);
+      const projectsList = userProjects.getProjects();
+      selectedProject = projectsList[projectIndex];
+      loadProject(projectsList, projectIndex, addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
     });
 
     deleteBtn.addEventListener("click", (e) => {
       e.preventDefault();
+
+      selectedProject = null;
       deleteProject(userProjects, projectLi);
       updateDatasetIndexes(projectsUl);
       clearProjectPage(addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
@@ -84,9 +92,19 @@ addTodoBtn.addEventListener("click", (e) => {
   toggleDisplayBlockNone(todoForm);
 });
 
-todoFormSubmit.addEventListener("click", (e) => {
+todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const submittedName = document.querySelector("#title").value;
+  const thisTodo = createTodo(submittedName);
+  const todoCard = makeTodoCard(thisTodo);
+
+  selectedProject.addTodo(thisTodo);
+  todoList.appendChild(todoCard);
+
+  document.querySelector("#title").value = "";
 
   toggleDisplayBlockNone(todoForm);
   toggleDisplayBlockNone(addTodoBtn);
 });
+

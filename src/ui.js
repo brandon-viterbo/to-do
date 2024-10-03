@@ -38,8 +38,8 @@ export function refreshProjectsList(projectsArr, displayElement) {
   }
 }
 
-export function makeTodoElement(todo) {
-  const todoCard = document.createElement("div");
+export function makeTodoCard(todo) {
+  const todoCard = document.createElement("li");
   const todoHeader = document.createElement("h3");
   const todoDueDate = document.createElement("p");
   const todoDescription = document.createElement("p");
@@ -64,9 +64,16 @@ export function clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDispla
 
 export function loadProject(projectsList, projectIndex, addTodoBtn, todoForm, headerDisplay, todoDisplay) {
   const project = projectsList[projectIndex];
+  const todos = project.getTodos();
 
   clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay);
   addTodoBtn.style.display = "block";
   headerDisplay.textContent = project.getName();
-  todoDisplay.textContent = project.getTodos();
+  
+  for (let i = 0; i < todos.length; i++) {
+    const todo = todos[i];
+    
+    const todoCard = makeTodoCard(todo);
+    todoDisplay.appendChild(todoCard);
+  }
 }
