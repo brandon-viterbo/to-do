@@ -1,5 +1,3 @@
-import { createTodo } from "./todo";
-
 export function createProject(projectName) {
   let name = projectName;
   let todos = [];

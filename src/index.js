@@ -96,13 +96,29 @@ todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const submittedName = document.querySelector("#title").value;
+  const dueDate = document.querySelector("#due-date").value;
+  const description = document.querySelector("#description").value;
+  const priorityInputs = document.querySelectorAll("input[name='priority'");
+  let priority = null;
+  priorityInputs.forEach(priorityInput => {
+    if (priorityInput.checked) {
+      priority = parseInt(priorityInput.value);
+    }
+  });
+
   const thisTodo = createTodo(submittedName);
+  thisTodo.setDueDate(dueDate);
+  thisTodo.setDescription(description);
+  thisTodo.setPriority(priority);
+  
   const todoCard = makeTodoCard(thisTodo);
 
   selectedProject.addTodo(thisTodo);
   todoList.appendChild(todoCard);
 
   document.querySelector("#title").value = "";
+  document.querySelector("#due-date").value = "";
+  document.querySelector("#description").value = "";
 
   toggleDisplayBlockNone(todoForm);
   toggleDisplayBlockNone(addTodoBtn);

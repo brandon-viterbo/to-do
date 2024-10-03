@@ -105,3 +105,19 @@ h1 {
 .project-link > span {
   flex-grow: 1;
 }
+
+.todo-card {
+  background-color: hsl(0deg 0% 80%);
+  width: 500px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.todo-card > .priority {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: hsl(0deg 0% 60%); 
+}
