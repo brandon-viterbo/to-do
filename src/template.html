@@ -17,7 +17,40 @@
       <input class="enter-project" type="text">
     </div>
     <div class="project">
-      <h2></h2>
+      <h2 class="projectName"></h2>
+      <button class="add-todo">Add Todo</button>
+      <form action="" method="get" class="todo-form">
+        <h2>Your New Todo!</h2>
+        <div class="todo-title">
+          <label for="title">Todo Name: </label>
+          <input type="text" name="title" id="title" required>
+        </div>
+        <div class="todo-due-date">
+          <label for="due-date">Due Date</label>
+          <input type="date" name="due-date" title="due-date">
+        </div>
+        <div class="todo-description">
+          <label for="description">Description</label>
+          <input type="text" name="description" title="description">
+        </div>
+        <fieldset>
+          <legend>How important is this?</legend>
+          <div>
+            <input type="radio" name="priority" id="very" value="very">
+            <label for="very">Very Important</label>
+          </div>
+          <div>
+            <input type="radio" name="priority" id="pretty" value="pretty">
+            <label for="pretty">Pretty Important</label>
+          </div>
+          <div>
+            <input type="radio" name="priority" id="not" value="not">
+            <label for="not">Not too important</label>
+          </div>
+        </fieldset>
+        <input type="submit" value="Post">
+      </form>
+      <div class="todos"></div>
     </div>
   </div>
 </body>

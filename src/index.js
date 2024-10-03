@@ -1,12 +1,16 @@
 import "./styles.css";
 import { createProject } from "./project";
 import { userProjects, } from "./app";
-import { addProjectToUl, loadProject, removeAllChildren, } from "./ui";
+import { addProjectToUl, loadProject, clearProjectPage, } from "./ui";
 
 const projectsUl = document.querySelector(".navbar > ul");
 const btnAddProject = document.querySelector(".add-project");
 const inputEnterProjectName = document.querySelector(".enter-project");
-const projectPage = document.querySelector(".project");
+const projectHeaderDisplay = document.querySelector(".projectName");
+const projectTodosDisplay = document.querySelector(".todos");
+const addTodoBtn = document.querySelector(".add-todo");
+const todoForm = document.querySelector(".todo-form");
+const todoFormSubmit = document.querySelector(".todo-form > input");
 
 function toggleDisplayBlockNone(element) {
   const elementStyles = window.getComputedStyle(element);
@@ -59,16 +63,30 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
     
     projectLink.addEventListener("click", (e) => {
       e.preventDefault();
-      loadProject(userProjects.getProjects(), parseInt(projectLi.dataset.index), projectPage);
+      loadProject(userProjects.getProjects(), parseInt(projectLi.dataset.index), addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
     });
 
     deleteBtn.addEventListener("click", (e) => {
       e.preventDefault();
       deleteProject(userProjects, projectLi);
       updateDatasetIndexes(projectsUl);
-      removeAllChildren(projectPage);
+      clearProjectPage(addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
     });
 
     e.target.value = "";
   }
-})
+});
+
+addTodoBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  toggleDisplayBlockNone(addTodoBtn);
+  toggleDisplayBlockNone(todoForm);
+});
+
+todoFormSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  toggleDisplayBlockNone(todoForm);
+  toggleDisplayBlockNone(addTodoBtn);
+});

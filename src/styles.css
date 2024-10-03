@@ -76,9 +76,14 @@ h1 {
   background-color: hsl(0deg 0% 90%);
 }
 
-.enter-project {
+.add-project {
+  display: block;
+}
+
+.enter-project, .todo-form, .add-todo {
   display: none;
 }
+
 
 .navbar li {
   display: flex;
@@ -92,9 +97,6 @@ h1 {
   background-color: white;
 }
 
-.add-project {
-  display: block;
-}
 
 .project-link {
   display: flex;

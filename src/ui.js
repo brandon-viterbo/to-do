@@ -55,13 +55,18 @@ export function makeTodoElement(todo) {
   return todoCard;
 }
 
-export function loadProject(projectsList, projectIndex, displayElement) {
+export function clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay) {
+  addTodoBtn.style.display = "none";
+  todoForm.style.display = "none";
+  headerDisplay.textContent = "";
+  removeAllChildren(todoDisplay);
+}
+
+export function loadProject(projectsList, projectIndex, addTodoBtn, todoForm, headerDisplay, todoDisplay) {
   const project = projectsList[projectIndex];
-  const header = document.createElement("h3");
 
-  removeAllChildren(displayElement);
-
-  header.textContent = project.getName();
-
-  displayElement.appendChild(header);
+  clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay);
+  addTodoBtn.style.display = "block";
+  headerDisplay.textContent = project.getName();
+  todoDisplay.textContent = project.getTodos();
 }
