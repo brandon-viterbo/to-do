@@ -19,20 +19,27 @@
     <div class="project">
       <h2 class="projectName"></h2>
       <button class="add-todo">Add Todo</button>
+
+
       <form action="" method="get" class="todo-form">
+        
         <h2>Your New Todo!</h2>
+        
         <div class="todo-title">
           <label for="title">Todo Name: </label>
           <input type="text" name="title" id="title" maxlength="40" required>
         </div>
+
         <div class="todo-due-date">
           <label for="due-date">Due Date</label>
           <input type="date" name="due-date" id="due-date" title="due-date">
         </div>
+
         <div class="todo-description">
           <label for="description">Description</label>
           <input type="text" name="description" id="description" title="description" maxlength="140">
         </div>
+
         <fieldset>
           <legend>How important is this?</legend>
           <div>
@@ -48,8 +55,11 @@
             <label for="priority-0">Not too important</label>
           </div>
         </fieldset>
+
         <input type="submit" value="Post">
       </form>
+
+
       <ul class="todos"></ul>
     </div>
   </div>

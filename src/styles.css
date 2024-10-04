@@ -80,7 +80,7 @@ h1 {
   display: block;
 }
 
-.enter-project, .todo-form, .add-todo {
+.enter-project, .todo-form, .add-todo, .todo-card input {
   display: none;
 }
 
@@ -93,8 +93,12 @@ h1 {
   margin-bottom: 10px;
 }
 
-.navbar li:hover {
+.navbar li:hover, .todo-card > .title:hover, .todo-card > .due-date:hover, .todo-card > .description:hover {
   background-color: white;
+}
+
+.todo-card > .priority:hover {
+  cursor: pointer;
 }
 
 

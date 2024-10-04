@@ -40,28 +40,70 @@ export function refreshProjectsList(projectsArr, displayElement) {
 
 export function makeTodoCard(todo) {
   const todoCard = document.createElement("li");
-  const header = document.createElement("h3");
+
+  const titleContainer = document.createElement("div");
+  const title = document.createElement("h3");
+  const titleEdit = document.createElement("input");
+  
+  const dueDateContainer = document.createElement("div");
   const dueDate = document.createElement("p");
+  const dueDateEdit = document.createElement("input");
+  
+  const descriptionContainer = document.createElement("div");
   const description = document.createElement("p");
+  const descriptionEdit = document.createElement("input");
+  
   const priority = document.createElement("div");
+  
+  const buttonsDiv = document.createElement("div");
+  const doneResumeBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
+
 
   todoCard.classList.add("todo-card");
 
-  header.classList.add("name");
-  header.textContent = todo.getName();
 
+  title.classList.add("name");
+  title.textContent = todo.getName();
   dueDate.classList.add("due-date");
   dueDate.textContent = todo.getDueDate();
-
   description.classList.add("description");
   description.textContent = todo.getDescription();
-
   priority.classList.add("priority");
   priority.textContent = todo.getPriority();
 
-  todoCard.appendChild(header);
-  todoCard.appendChild(dueDate);
-  todoCard.appendChild(description);
+
+  titleEdit.setAttribute("type", "text");
+  dueDateEdit.setAttribute("type", "date");
+  descriptionEdit.setAttribute("type", "text");
+
+
+  titleContainer.appendChild(title);
+  titleContainer.appendChild(titleEdit);
+
+  dueDateContainer.appendChild(dueDate);
+  dueDateContainer.appendChild(dueDateEdit);
+
+  descriptionContainer.appendChild(description);
+  descriptionContainer.appendChild(descriptionEdit);
+
+
+  buttonsDiv.classList.add("buttons");
+  doneResumeBtn.classList.add("done-resume");
+  doneResumeBtn.textContent = "Done";
+  deleteBtn.classList.add("delete");
+  deleteBtn.textContent = "Delete";
+  buttonsDiv.appendChild(doneResumeBtn);
+  buttonsDiv.appendChild(deleteBtn);
+
+  titleContainer.classList.add("title");
+  dueDateContainer.classList.add("due-date");
+  descriptionContainer.classList.add("description");
+
+  todoCard.append(titleContainer);
+  todoCard.appendChild(dueDateContainer);
+  todoCard.appendChild(descriptionContainer);
+  todoCard.appendChild(buttonsDiv);
   todoCard.appendChild(priority);
 
   return todoCard;
