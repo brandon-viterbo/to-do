@@ -91,7 +91,15 @@ export function makeTodoCard(todo, todoIndex) {
 
   buttonsDiv.classList.add("buttons");
   doneResumeBtn.classList.add("done-resume");
-  doneResumeBtn.textContent = "Done";
+
+  if (!todo.isDone()) {
+    todoCard.style.backgroundColor = "hsl(0deg 0% 80%)";
+    doneResumeBtn.textContent = "Done";
+  } else {
+    todoCard.style.backgroundColor = "#66FF99";
+    doneResumeBtn.textContent = "Resume";
+  }
+
   deleteBtn.classList.add("delete");
   deleteBtn.textContent = "Delete";
   buttonsDiv.appendChild(doneResumeBtn);

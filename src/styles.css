@@ -114,7 +114,6 @@ h1 {
   display: grid;
 
   grid-template: repeat(3, auto) / minmax(auto, max-content) auto 25px;
-  background-color: hsl(0deg 0% 80%);
   width: 500px;
   padding: 10px;
   margin-left: 10px;
