@@ -71,6 +71,10 @@ export function makeTodoCard(todo, todoIndex) {
   dueDate.textContent = todo.getDueDate();
   description.classList.add("description");
   description.textContent = todo.getDescription();
+
+  if (todo.getDueDate() === "") {
+    dueDate.textContent = "Due Anytime";
+  }
   
   priority.classList.add("priority");
   if (todoPriority === 2) {
