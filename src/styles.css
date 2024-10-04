@@ -80,7 +80,7 @@ h1 {
   display: block;
 }
 
-.enter-project, .todo-form, .add-todo, .todo-card input {
+.enter-project, .todo-form, .add-todo, .todo-card input, .rename-project, .project-name-input {
   display: none;
 }
 

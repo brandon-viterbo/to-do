@@ -130,19 +130,21 @@ export function makeTodoCard(todo, todoIndex) {
   return todoCard;
 }
 
-export function clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay) {
+export function clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay, renameProjectBtn) {
   addTodoBtn.style.display = "none";
   todoForm.style.display = "none";
+  renameProjectBtn.style.display = "none";
   headerDisplay.textContent = "";
   removeAllChildren(todoDisplay);
 }
 
-export function loadProject(projectsList, projectIndex, addTodoBtn, todoForm, headerDisplay, todoDisplay) {
+export function loadProject(projectsList, projectIndex, addTodoBtn, todoForm, headerDisplay, todoDisplay, renameProjectBtn) {
   const project = projectsList[projectIndex];
   const todos = project.getTodos();
 
-  clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay);
+  clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay, renameProjectBtn);
   addTodoBtn.style.display = "block";
+  renameProjectBtn.style.display = "block";
   headerDisplay.textContent = project.getName();
   
   for (let i = 0; i < todos.length; i++) {

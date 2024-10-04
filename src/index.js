@@ -13,6 +13,8 @@ const addTodoBtn = document.querySelector(".add-todo");
 const todoForm = document.querySelector(".todo-form");
 const todoFormSubmit = document.querySelector(".todo-form > input");
 const todoList = document.querySelector(".todos");
+const renameProjectBtn = document.querySelector(".rename-project");
+const renameProjectInput = document.querySelector(".project-name-input");
 let selectedProject = null;
 
 function toggleDisplayBlockNone(element) {
@@ -39,6 +41,19 @@ function updateDatasetIndexes(htmlList) {
     const li = listItems[i];
     
     li.dataset.index = i;
+  }
+}
+
+function updateProjectNamesUl(htmlList) {
+  const projects = userProjects.getProjects();
+  const listItems = htmlList.children;
+
+  for (let i = 0; i < projects.length; i++) {
+    const proj = projects[i];
+    const name = proj.getName();
+    const li = listItems[i];
+
+    li.textContent = name;
   }
 }
 
@@ -178,7 +193,7 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
       selectedProject = projectsList[projectIndex];
       const todosModel = selectedProject.getTodos();
       const todoChildren = todoList.children;
-      loadProject(projectsList, projectIndex, addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
+      loadProject(projectsList, projectIndex, addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay, renameProjectBtn);
       
       
       for (let i = 0; i < todoChildren.length; i++) {
@@ -194,7 +209,7 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
       selectedProject = null;
       deleteProject(userProjects, projectLi);
       updateDatasetIndexes(projectsUl);
-      clearProjectPage(addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
+      clearProjectPage(addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay, renameProjectBtn);
     });
     
     e.target.value = "";
@@ -245,3 +260,21 @@ todoForm.addEventListener("submit", (e) => {
   toggleDisplayBlockNone(addTodoBtn);
 });
 
+renameProjectBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  toggleDisplayBlockNone(renameProjectBtn);
+  toggleDisplayBlockNone(renameProjectInput);
+});
+
+renameProjectInput.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    const newName = e.target.value;
+
+    selectedProject.setName(newName);
+    projectHeaderDisplay.textContent = newName;
+    toggleDisplayBlockNone(renameProjectBtn);
+    toggleDisplayBlockNone(renameProjectInput);
+    updateProjectNamesUl(projectsUl);
+  }
+})
