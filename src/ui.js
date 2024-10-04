@@ -54,7 +54,8 @@ export function makeTodoCard(todo, todoIndex) {
   const descriptionEdit = document.createElement("input");
   
   const priority = document.createElement("div");
-  
+  const todoPriority = todo.getPriority();
+
   const buttonsDiv = document.createElement("div");
   const doneResumeBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
@@ -70,8 +71,15 @@ export function makeTodoCard(todo, todoIndex) {
   dueDate.textContent = todo.getDueDate();
   description.classList.add("description");
   description.textContent = todo.getDescription();
+  
   priority.classList.add("priority");
-  priority.textContent = todo.getPriority();
+  if (todoPriority === 2) {
+    priority.style.backgroundColor = "red";
+  } else if (todoPriority === 1) {
+    priority.style.backgroundColor = "yellow";
+  } else if (todoPriority === 0) {
+    priority.style.backgroundColor = "hsl(0deg 0% 60%)";
+  }
 
 
   titleEdit.setAttribute("type", "text");

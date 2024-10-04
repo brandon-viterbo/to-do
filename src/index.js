@@ -45,6 +45,7 @@ function updateDatasetIndexes(htmlList) {
 function makeTodoCardChangeable(todo, todoCard) {
   const deleteTodoBtn = todoCard.querySelector(".delete");
   const doneResumeBtn = todoCard.querySelector(".done-resume");
+  const priority = todoCard.querySelector(".priority");
   
   deleteTodoBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -66,6 +67,21 @@ function makeTodoCardChangeable(todo, todoCard) {
     }
     
     todo.toggleDone();
+  });
+  
+  priority.addEventListener("click", (e) => {
+    const thisPriority = todo.getPriority();
+
+    if (thisPriority === 2) {
+      todo.setPriority(0);
+      priority.style.backgroundColor = "hsl(0deg 0% 60%)";
+    } else if (thisPriority === 1) {
+      todo.setPriority(2);
+      priority.style.backgroundColor = "red";
+    } else if (thisPriority === 0) {
+      todo.setPriority(1);
+      priority.style.backgroundColor = "yellow";
+    }
   });
 }
 

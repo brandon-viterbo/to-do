@@ -136,8 +136,7 @@ h1 {
   grid-area: 1 / 3 / 3 / 4;
   height: 25px;
   width: 25px;
-  border-radius: 50%;
-  background-color: hsl(0deg 0% 60%); 
+  border-radius: 50%; 
 }
 
 .todo-card > .description {
