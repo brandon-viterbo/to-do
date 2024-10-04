@@ -46,7 +46,71 @@ function makeTodoCardChangeable(todo, todoCard) {
   const deleteTodoBtn = todoCard.querySelector(".delete");
   const doneResumeBtn = todoCard.querySelector(".done-resume");
   const priority = todoCard.querySelector(".priority");
+  const titleContainer = todoCard.querySelector(".title");
+  const titleDisplay = titleContainer.children[0];
+  const titleEdit = titleContainer.children[1];
+  const dueDateContainer = todoCard.querySelector(".due-date");
+  console.log(dueDateContainer)
+  const dueDateDisplay = dueDateContainer.children[0];
+  const dueDateEdit = dueDateContainer.children[1];
+  const descriptionContainer = todoCard.querySelector(".description");
+  const descriptionDisplay = descriptionContainer.children[0];
+  const descriptionEdit = descriptionContainer.children[1];
   
+  titleDisplay.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    toggleDisplayBlockNone(titleDisplay);
+    toggleDisplayBlockNone(titleEdit);
+  });
+
+  titleEdit.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      const newName = e.target.value;      
+
+      todo.setName(newName);
+      titleDisplay.textContent = newName;
+      toggleDisplayBlockNone(titleDisplay);
+      toggleDisplayBlockNone(titleEdit);
+    }
+  });
+
+  dueDateDisplay.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    toggleDisplayBlockNone(dueDateDisplay);
+    toggleDisplayBlockNone(dueDateEdit);
+  });
+
+  dueDateEdit.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      const newDate = e.target.value;      
+
+      todo.setDueDate(newDate);
+      dueDateDisplay.textContent = newDate;
+      toggleDisplayBlockNone(dueDateDisplay);
+      toggleDisplayBlockNone(dueDateEdit);
+    }
+  });
+
+  descriptionDisplay.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    toggleDisplayBlockNone(descriptionDisplay);
+    toggleDisplayBlockNone(descriptionEdit);
+  });
+
+  descriptionEdit.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      const newDesc = e.target.value;      
+
+      todo.setDescription(newDesc);
+      descriptionDisplay.textContent = newDesc;
+      toggleDisplayBlockNone(descriptionDisplay);
+      toggleDisplayBlockNone(descriptionEdit);
+    }
+  });
+
   deleteTodoBtn.addEventListener("click", (e) => {
     e.preventDefault();
     

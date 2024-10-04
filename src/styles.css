@@ -143,3 +143,8 @@ h1 {
   grid-area: 2 / 1 / 3 / 3;
 }
 
+.todo-card > .description > p {
+  min-height: 1em;
+  min-width: 455px;
+}
+
