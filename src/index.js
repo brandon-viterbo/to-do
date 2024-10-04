@@ -42,6 +42,33 @@ function updateDatasetIndexes(htmlList) {
   }
 }
 
+function makeTodoCardChangeable(todo, todoCard) {
+  const deleteTodoBtn = todoCard.querySelector(".delete");
+  const doneResumeBtn = todoCard.querySelector(".done-resume");
+
+  deleteTodoBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    selectedProject.removeTodo(todo);
+    todoCard.remove();
+    updateDatasetIndexes(todoList);
+  });
+
+  doneResumeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (!todo.isDone()) {
+      todoCard.style.backgroundColor = "#66FF99";
+      doneResumeBtn.textContent = "Resume";
+    } else {
+      todoCard.style.backgroundColor = "hsl(0deg 0% 80%)";
+      doneResumeBtn.textContent = "Done";
+    }
+
+    todo.toggleDone();
+  });
+}
+
 btnAddProject.addEventListener("click", (e) => {
   e.preventDefault();
   toggleDisplayBlockNone(btnAddProject);
@@ -116,15 +143,7 @@ todoForm.addEventListener("submit", (e) => {
   thisTodo.setPriority(priority);
   
   const todoCard = makeTodoCard(thisTodo, todoIndex);
-  const deleteTodoBtn = todoCard.querySelector(".delete");
-
-  deleteTodoBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    selectedProject.removeTodo(thisTodo);
-    todoCard.remove();
-    updateDatasetIndexes(todoList);
-  })
+  makeTodoCardChangeable(thisTodo, todoCard);
 
   selectedProject.addTodo(thisTodo);
   todoList.appendChild(todoCard);
