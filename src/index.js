@@ -45,10 +45,10 @@ function updateDatasetIndexes(htmlList) {
 function makeTodoCardChangeable(todo, todoCard) {
   const deleteTodoBtn = todoCard.querySelector(".delete");
   const doneResumeBtn = todoCard.querySelector(".done-resume");
-
+  
   deleteTodoBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
+    
     selectedProject.removeTodo(todo);
     todoCard.remove();
     updateDatasetIndexes(todoList);
@@ -64,7 +64,7 @@ function makeTodoCardChangeable(todo, todoCard) {
       todoCard.style.backgroundColor = "hsl(0deg 0% 80%)";
       doneResumeBtn.textContent = "Done";
     }
-
+    
     todo.toggleDone();
   });
 }
@@ -92,29 +92,38 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
     
     projectLink.addEventListener("click", (e) => {
       e.preventDefault();
-
+      
       const projectIndex = parseInt(projectLi.dataset.index);
       const projectsList = userProjects.getProjects();
       selectedProject = projectsList[projectIndex];
+      const todosModel = selectedProject.getTodos();
+      const todoChildren = todoList.children;
       loadProject(projectsList, projectIndex, addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
+      
+      
+      for (let i = 0; i < todoChildren.length; i++) {
+        const todoCard = todoChildren[i];
+      
+        makeTodoCardChangeable(todosModel[i], todoCard);
+      }      
     });
-
+    
     deleteBtn.addEventListener("click", (e) => {
       e.preventDefault();
-
+      
       selectedProject = null;
       deleteProject(userProjects, projectLi);
       updateDatasetIndexes(projectsUl);
       clearProjectPage(addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay);
     });
-
+    
     e.target.value = "";
   }
 });
 
 addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
-
+  
   toggleDisplayBlockNone(addTodoBtn);
   toggleDisplayBlockNone(todoForm);
 });
@@ -128,8 +137,8 @@ todoForm.addEventListener("submit", (e) => {
   const priorityInputs = document.querySelectorAll("input[name='priority'");
   const initialTodos = selectedProject.getTodos();
   const todoIndex = initialTodos.length;
-
-
+  
+  
   let priority = null;
   priorityInputs.forEach(priorityInput => {
     if (priorityInput.checked) {
@@ -144,14 +153,14 @@ todoForm.addEventListener("submit", (e) => {
   
   const todoCard = makeTodoCard(thisTodo, todoIndex);
   makeTodoCardChangeable(thisTodo, todoCard);
-
+  
   selectedProject.addTodo(thisTodo);
   todoList.appendChild(todoCard);
-
+  
   document.querySelector("#title").value = "";
   document.querySelector("#due-date").value = "";
   document.querySelector("#description").value = "";
-
+  
   toggleDisplayBlockNone(todoForm);
   toggleDisplayBlockNone(addTodoBtn);
 });
