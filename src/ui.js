@@ -38,7 +38,7 @@ export function refreshProjectsList(projectsArr, displayElement) {
   }
 }
 
-export function makeTodoCard(todo) {
+export function makeTodoCard(todo, todoIndex) {
   const todoCard = document.createElement("li");
 
   const titleContainer = document.createElement("div");
@@ -61,6 +61,7 @@ export function makeTodoCard(todo) {
 
 
   todoCard.classList.add("todo-card");
+  todoCard.setAttribute("data-index", `${todoIndex}`);
 
 
   title.classList.add("name");

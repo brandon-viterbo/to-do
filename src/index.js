@@ -99,6 +99,10 @@ todoForm.addEventListener("submit", (e) => {
   const dueDate = document.querySelector("#due-date").value;
   const description = document.querySelector("#description").value;
   const priorityInputs = document.querySelectorAll("input[name='priority'");
+  const initialTodos = selectedProject.getTodos();
+  const todoIndex = initialTodos.length;
+
+
   let priority = null;
   priorityInputs.forEach(priorityInput => {
     if (priorityInput.checked) {
@@ -111,7 +115,16 @@ todoForm.addEventListener("submit", (e) => {
   thisTodo.setDescription(description);
   thisTodo.setPriority(priority);
   
-  const todoCard = makeTodoCard(thisTodo);
+  const todoCard = makeTodoCard(thisTodo, todoIndex);
+  const deleteTodoBtn = todoCard.querySelector(".delete");
+
+  deleteTodoBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    selectedProject.removeTodo(thisTodo);
+    todoCard.remove();
+    updateDatasetIndexes(todoList);
+  })
 
   selectedProject.addTodo(thisTodo);
   todoList.appendChild(todoCard);
