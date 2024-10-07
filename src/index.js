@@ -194,7 +194,7 @@ inputEnterProjectName.addEventListener("keyup", (e) => {
       selectedProject = projectsList[projectIndex];
       const todosModel = selectedProject.getTodos();
       const todoChildren = todoList.children;
-      loadProject(projectsList, projectIndex, addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay, renameProjectBtn);
+      loadProject(projectsList, projectIndex, addTodoBtn, todoForm, projectHeaderDisplay, projectTodosDisplay, renameProjectBtn, renameProjectInput);
       
       
       for (let i = 0; i < todoChildren.length; i++) {

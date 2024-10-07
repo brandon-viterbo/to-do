@@ -138,13 +138,15 @@ export function clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDispla
   removeAllChildren(todoDisplay);
 }
 
-export function loadProject(projectsList, projectIndex, addTodoBtn, todoForm, headerDisplay, todoDisplay, renameProjectBtn) {
+export function loadProject(projectsList, projectIndex, addTodoBtn, todoForm, headerDisplay, todoDisplay, renameProjectBtn, renameProjectInput) {
   const project = projectsList[projectIndex];
   const todos = project.getTodos();
 
   clearProjectPage(addTodoBtn, todoForm, headerDisplay, todoDisplay, renameProjectBtn);
   addTodoBtn.style.display = "block";
   renameProjectBtn.style.display = "block";
+  renameProjectInput.style.display = "none";
+  renameProjectInput.value = "";
   headerDisplay.textContent = project.getName();
   
   for (let i = 0; i < todos.length; i++) {
