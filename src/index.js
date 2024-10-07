@@ -277,5 +277,7 @@ renameProjectInput.addEventListener("keyup", (e) => {
     toggleDisplayBlockNone(renameProjectBtn);
     toggleDisplayBlockNone(renameProjectInput);
     updateProjectNamesUl(projectsUl);
+
+    e.target.value = "";
   }
 })
