@@ -51,9 +51,10 @@ function updateProjectNamesUl(htmlList) {
   for (let i = 0; i < projects.length; i++) {
     const proj = projects[i];
     const name = proj.getName();
-    const li = listItems[i];
+    const thisLink = listItems[i];
+    const thisLinksText = thisLink.children[0];
 
-    li.textContent = name;
+    thisLinksText.textContent = name;
   }
 }
 
